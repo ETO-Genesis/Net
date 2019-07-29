@@ -4,7 +4,7 @@
 # File Name    : Loss.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-29 23:34:47
+# Last Modified: 2019-07-29 23:37:44
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -13,7 +13,7 @@ import time
 import os
 import torch
 from torchcrf import CRF
-from torch.nn.functional import F
+import torch.nn.functional as F
 import Constants
 
 
