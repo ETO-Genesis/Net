@@ -4,7 +4,7 @@
 # File Name    : RNN.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-29 10:09:15
+# Last Modified: 2019-07-29 23:13:41
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -12,6 +12,7 @@ import argparse
 import time
 import os
 import sys
+import Constants
 
 from torch import nn
 
@@ -19,10 +20,10 @@ from torch import nn
 class RNN(nn.Module):
     """ RNN 基础 net
     """
-    def __init__(self, num_embeddings, embedding_dim, padding_idx, rnn_type,
+    def __init__(self, num_embeddings, embedding_dim, rnn_type,
                  hidden_size, layers, batch_first=True, dropout=0.1, brnn=True):
         super().__init__()
-        self.embedding = nn.Embedding(num_embeddings, embedding_dim, padding_idx)
+        self.embedding = nn.Embedding(num_embeddings, embedding_dim, Constants.PAD)
 
         self.rnn = getattr(nn, rnn_type)(
             embedding_dim,

@@ -4,7 +4,7 @@
 # File Name    : Loss.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-29 22:51:56
+# Last Modified: 2019-07-29 23:12:32
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -13,11 +13,12 @@ import time
 import os
 import torch
 from torchcrf import CRF
+import Constants
 
 
 class Loss(object):
     def __init__(self, opt):
-        self.padding_idx = opt.padding_idx
+        pass
 
     def cal_performance(self, pred, gold, smoothing=False):
         loss = self.cal_loss(pred, gold, smoothing)
@@ -28,7 +29,7 @@ class Loss(object):
 
     def cal_correct(self, pred, gold):
         pred = torch.argmax(pred, dim=-1)
-        non_pak_mask = gold.ne(self.padding_idx)
+        non_pak_mask = gold.ne(Constants.PAD)
         n_correct = pred.eq(gold)
         n_correct = n_correct.masked_select(non_pak_mask).sum().item()
         return n_correct
@@ -40,7 +41,7 @@ class CRFLoss(Loss):
         self.crf = CRF(num_tags, batch_first=True).to(opt.device)
 
     def cal_loss(self, pred, gold, smotthing):
-        loss = -self.crf(pred, gold, mask=self.padding_idx)
+        loss = -self.crf(pred, gold, mask=Constants.PAD)
         return loss
 
 
@@ -61,11 +62,11 @@ class CrossEntropy(Loss):
             one_hot = one_hot * (1 - eps) + (1 - one_hot) * eps / (n_class - 1)
             log_prb = F.log_softmax(pred, dim=1)
 
-            non_pad_mask = gold.ne(self.padding_idx)
+            non_pad_mask = gold.ne(Constants.PAD)
             loss = -(one_hot * log_prb).sum(dim=1)
             loss = loss.masked_select(non_pad_mask).sum()  # average later
         else:
-            loss = F.cross_entropy(pred, gold, ignore_index=self.padding_idx, reduction='sum')
+            loss = F.cross_entropy(pred, gold, ignore_index=Constants.PAD, reduction='sum')
 
         return loss
 
