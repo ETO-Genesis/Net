@@ -4,7 +4,7 @@
 # File Name    : AttnLayer.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-03-07
-# Last Modified: 2019-07-29 22:58:51
+# Last Modified: 2019-07-29 23:00:38
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -40,7 +40,7 @@ class GlobalAttention(torch.nn.Module):
             attn_weights: (batch, 1, seq_len)
             # 输出是注意力的概率，也就是长度为input_lengths的向量，它的和加起来是1。
         """
-        attn_energies = self.score(ht.transpose(0, 1), encoder_outputs)
+        attn_energies = self.score(ht.transpose(0, 1), enc_outputs)
 
         # (batch, seq_len) -> (batch, 1, seq_len)
         attn_weights = F.softmax(attn_energies, dim=1).unsqueeze(1)
