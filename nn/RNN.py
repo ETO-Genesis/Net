@@ -4,7 +4,7 @@
 # File Name    : RNN.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-29 23:13:41
+# Last Modified: 2019-07-29 23:29:20
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -15,6 +15,7 @@ import sys
 import Constants
 
 from torch import nn
+from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 
 class RNN(nn.Module):
@@ -36,8 +37,6 @@ class RNN(nn.Module):
 
     def forward(self, *args, **kwargs):
         raise NotImplementedError()
-
-
 
 
 def main(args):
