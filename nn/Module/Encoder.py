@@ -4,7 +4,7 @@
 # File Name    : Encoder.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-30 09:50:08
+# Last Modified: 2019-07-30 10:51:47
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -32,9 +32,8 @@ class EncoderRNN(RNN):
 
     """
 
-    def __init__(self, vocab, embeddings=None, word2vec_size=512,
-                 rnn_type="GRU", rnn_size=512, layers=2, dropout=0.1, brnn=True):
-		num_embeddings = len(vocab)
+    def __init__(self, num_embeddings, word2vec_size, rnn_type, rnn_size,
+                 layers, dropout, brnn, embeddings=None):
         embedding_dim = word2vec_size
 
         super().__init__(rnn_type,
