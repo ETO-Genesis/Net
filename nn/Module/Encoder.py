@@ -4,7 +4,7 @@
 # File Name    : Encoder.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-30 10:51:47
+# Last Modified: 2019-07-30 10:55:18
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -37,7 +37,7 @@ class EncoderRNN(RNN):
         embedding_dim = word2vec_size
 
         super().__init__(rnn_type,
-                         word2vec_size
+                         word2vec_size,
                          rnn_size,
                          layers,
                          True,
