@@ -4,7 +4,7 @@
 # File Name    : RNN.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-29 23:29:20
+# Last Modified: 2019-07-30 09:49:20
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -21,10 +21,8 @@ from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 class RNN(nn.Module):
     """ RNN 基础 net
     """
-    def __init__(self, num_embeddings, embedding_dim, rnn_type,
-                 hidden_size, layers, batch_first=True, dropout=0.1, brnn=True):
+    def __init__(self, rnn_type, embedding_dim, hidden_size, layers, batch_first=True, dropout=0.1, brnn=True):
         super().__init__()
-        self.embedding = nn.Embedding(num_embeddings, embedding_dim, Constants.PAD)
 
         self.rnn = getattr(nn, rnn_type)(
             embedding_dim,
