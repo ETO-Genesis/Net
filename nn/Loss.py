@@ -4,7 +4,7 @@
 # File Name    : Loss.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-30 10:31:35
+# Last Modified: 2019-07-30 11:30:44
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -20,7 +20,7 @@ import Constants
 
 class Loss(nn.Module):
     def __init__(self, opt):
-        pass
+        super().__init__()
 
     def cal_performance(self, pred, gold, smoothing=False):
         loss = self.forward(pred, gold, smoothing)
@@ -51,9 +51,9 @@ class CRFLoss(Loss):
 class NLLLoss(Loss):
     def __init__(self, opt):
         super().__init__(opt)
-        self.criterion = nn.NLLLoss(ignore_index=Constants.PAD, reduction='sum')
+        self.criterion = torch.nn.NLLLoss(ignore_index=Constants.PAD, reduction='sum')
 
-    def forward(pred, gold):
+    def forward(self, pred, gold, smoothing):
         loss = self.criterion(pred, gold)
         return loss
 

@@ -4,7 +4,7 @@
 # File Name    : Encoder.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-07-30 10:55:18
+# Last Modified: 2019-07-30 10:56:44
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -14,6 +14,7 @@ import os
 import sys
 import Constants
 
+from .RNN import RNN
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
