@@ -4,7 +4,7 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 18:50:41
+# Last Modified: 2019-08-08 19:30:14
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -49,7 +49,7 @@ class EncoderRNN(EncoderBase):
 
         self.hidden_size = self.rnn_size
         self.embedding = nn.Embedding(V, D, Constants.PAD)
-        if self.pretrained_embed:
+        if hasattr(self, pretrained_embed) and self.pretrained_embed:
             self.embedding.weight.data.copy_(self.pretrained_weight)
 
         self.rnn = getattr(nn, self.rnn_type)(
