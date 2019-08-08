@@ -4,7 +4,7 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 13:05:44
+# Last Modified: 2019-08-08 16:26:11
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -12,7 +12,7 @@ import argparse
 import time
 import os
 import sys
-import Constants
+from Net import Constants
 
 from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
