@@ -4,7 +4,7 @@
 # File Name    : crf.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 16:38:20
+# Last Modified: 2019-08-08 21:58:30
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -18,8 +18,9 @@ from Net import Constants
 
 
 class CRFLoss(Loss):
-    def __init__(self, opt, num_tags):
+    def __init__(self, opt):
         super().__init__(opt)
+        num_tags = opt.tgt_vocab_size
         self.crf = CRF(num_tags, batch_first=True).to(opt.device)
 
     def forward(self, pred, gold, smotthing):
