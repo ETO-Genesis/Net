@@ -4,7 +4,7 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 20:20:53
+# Last Modified: 2019-08-08 22:55:02
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -44,7 +44,7 @@ class EncoderRNN(EncoderBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        V = self.num_embeddings
+        V = self.num_embeddings = self.vocab_size
         D = self.embedding_dim
 
         self.hidden_size = self.rnn_size

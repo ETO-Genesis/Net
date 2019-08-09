@@ -4,17 +4,13 @@
 # File Name    : __init__.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-08-08
-# Last Modified: 2019-08-08 17:50:58
+# Last Modified: 2019-08-09 00:28:40
 # Descption    :
 # Version      : Python 3.7
 ############################################
 import argparse
-import time
-import os
-import sys
 
 from torch import nn
-import logging
 
 
 class EncoderBase(nn.Module):

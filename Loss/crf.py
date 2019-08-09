@@ -1,29 +1,29 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 ############################################
-# File Name    : cross_entropy.py
+# File Name    : crf.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 16:37:25
+# Last Modified: 2019-08-09 09:51:23
 # Descption    :
 # Version      : Python 3.7
 ############################################
 import argparse
-import time
-import os
-import torch
-from torch import nn
-from . import Loss
+from torchcrf import CRF
 from Net import Constants
+from . import Loss
 
 
-class NLLLoss(Loss):
+class CRFLoss(Loss):
     def __init__(self, opt):
         super().__init__(opt)
-        self.criterion = torch.nn.NLLLoss(ignore_index=Constants.PAD, reduction='sum')
+        num_tags = opt.tgt_vocab_size
+        self.crf = CRF(num_tags, batch_first=True).to(opt.device)
 
-    def forward(self, pred, gold, smoothing):
-        loss = self.criterion(pred, gold)
+    def forward(self, pred, gold, smotthing):
+        import pdb
+        pdb.set_trace()
+        loss = -self.crf(pred, gold, mask=gold.ne(Constants.PAD))
         return loss
 
 
