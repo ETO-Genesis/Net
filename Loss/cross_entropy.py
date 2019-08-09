@@ -4,7 +4,7 @@
 # File Name    : cross_entropy.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-09 13:30:23
+# Last Modified: 2019-08-09 14:07:56
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -28,7 +28,7 @@ class NLLLoss(Loss):
 
     def cal_performance(self, pred, gold, smoothing):
         gold = gold[:, 1:]
-        loss, n_correct = super().cal_performance(gold, gold, smoothing)
+        loss, n_correct = super().cal_performance(pred, gold, smoothing)
         return loss, n_correct
 
 
