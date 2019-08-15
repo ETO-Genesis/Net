@@ -4,14 +4,11 @@
 # File Name    : cnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 19:05:11
+# Last Modified: 2019-08-09 22:22:34
 # Descption    :
 # Version      : Python 3.7
 ############################################
 import argparse
-import time
-import os
-import sys
 
 from . import EncoderBase
 from Net import Constants
@@ -24,16 +21,15 @@ class EncoderCNN(EncoderBase):
     Applies a multi-layer RNN to an input sequence.
     Kwargs:
     Args:
-		Inputs: inputs, lengths
-		Outputs: output, hidden
-    Examples::
+        Inputs: inputs, lengths
+        Outputs: output, hidden
+    Examples:
          >>> encoder = EncoderRNN(input_vocab, max_seq_length, hidden_size)
          >>> output, hidden = encoder(input)
     """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
 
         V = self.num_embeddings
         D = self.embedding_dim
@@ -55,7 +51,6 @@ class EncoderCNN(EncoderBase):
             for K in Ks
         )
 
-
     def forward(self, inputs):
         """
         Applies a multi-layer RNN to an input sequence.
@@ -67,9 +62,9 @@ class EncoderCNN(EncoderBase):
             hidden:
         """
         embedded = self.embedding(inputs)
-        x = embedded.view(x.size(0), 1, self.max_len, self.embedding_dim)
+        x = embedded.view(embedded.size(0), 1, self.max_len, self.embedding_dim)
         x = self.cnn(x)
-        x = x.view(x.size(0), -1)
+        outputs = x.view(x.size(0), -1)
         return outputs
 
 

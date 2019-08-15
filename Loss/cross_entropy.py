@@ -4,7 +4,7 @@
 # File Name    : cross_entropy.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-09 14:07:56
+# Last Modified: 2019-08-11 19:56:28
 # Descption    :
 # Version      : Python 3.7
 ############################################
