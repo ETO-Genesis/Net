@@ -4,34 +4,23 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-07-29
-# Last Modified: 2019-08-08 22:55:02
+# Last Modified: 2019-08-16 17:13:06
 # Descption    :
 # Version      : Python 3.7
 ############################################
 import argparse
-import time
-import os
-import sys
 from . import EncoderBase
-from Net import Constants
 
-from torch import nn
+from Net.nn import Embedding
+from Net.nn import RNN
+
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
-
 
 
 class EncoderRNN(EncoderBase):
     r"""
     Applies a multi-layer RNN to an input sequence.
     Kwargs:
-        num_embeddings
-        word2vec_size
-        rnn_type
-        rnn_size
-        layers
-        dropout
-        brnn
-
         pretrained_embed
     Args:
         Inputs: inputs, input_lengths
@@ -44,18 +33,16 @@ class EncoderRNN(EncoderBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        V = self.num_embeddings = self.vocab_size
+        V = self.num_embeddings
         D = self.embedding_dim
 
         self.hidden_size = self.rnn_size
-        self.embedding = nn.Embedding(V, D, Constants.PAD)
-        if self.pretrained_embed:
-            self.embedding.weight.data.copy_(self.pretrained_weight)
-
-        self.rnn = getattr(nn, self.rnn_type)(
+        self.embedding = Embedding(V, D)
+        self.rnn = RNN(
+            rnn_type=self.rnn_type,
             input_size=D,
             hidden_size=self.rnn_size,
-            num_layers=self.layers,
+            num_layer=self.num_layers,
             batch_first=True,
             dropout=self.dropout,
             bidirectional=self.brnn

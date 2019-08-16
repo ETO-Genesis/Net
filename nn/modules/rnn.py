@@ -4,7 +4,7 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-08-16
-# Last Modified: 2019-08-16 16:59:01
+# Last Modified: 2019-08-16 21:36:08
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -16,7 +16,7 @@ class RNN(nn.Module):
     def __init__(self, rnn_type, input_size, hidden_size, num_layers,
                  batch_first=True, dropout=0.1, bidirectional=True):
 
-        self.rnn = getattr(nn, self.rnn_type)(
+        self.rnn = getattr(nn, rnn_type)(
             input_size=input_size,
             hidden_size=hidden_size,
             num_layers=num_layers,
