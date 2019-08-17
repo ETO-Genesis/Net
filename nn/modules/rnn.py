@@ -4,7 +4,7 @@
 # File Name    : rnn.py
 # Created By   : Suluo - sampson.suluo@gmail.com
 # Creation Date: 2019-08-16
-# Last Modified: 2019-08-16 21:36:08
+# Last Modified: 2019-08-17 11:56:18
 # Descption    :
 # Version      : Python 3.7
 ############################################
@@ -14,7 +14,8 @@ from torch import nn
 
 class RNN(nn.Module):
     def __init__(self, rnn_type, input_size, hidden_size, num_layers,
-                 batch_first=True, dropout=0.1, bidirectional=True):
+                 batch_first=True, dropout=0.1, bidirectional=False):
+        super().__init__()
 
         self.rnn = getattr(nn, rnn_type)(
             input_size=input_size,
