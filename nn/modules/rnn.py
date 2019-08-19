@@ -12,7 +12,7 @@ import argparse
 from torch import nn
 
 
-class RNN(nn.Module):
+class NetRNN(nn.Module):
     def __init__(self, rnn_type, input_size, hidden_size, num_layers,
                  batch_first=True, dropout=0.1, bidirectional=False):
         super().__init__()

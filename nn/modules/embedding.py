@@ -13,7 +13,7 @@ from torch import nn
 from Net import Constants
 
 
-class Embedding(nn.Module):
+class NetEmbedding(nn.Module):
     def __init__(self, V, D, pretrained_embed=False, pretrained_weight=None):
         super().__init__()
         self.embedding = nn.Embedding(V, D, Constants.PAD)

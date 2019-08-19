@@ -8,6 +8,6 @@
 # Descption    :
 # Version      : Python 3.7
 ############################################
-from .modules.sparse import Embedding
+from .modules.embedding import NetEmbedding
 
-from .modules.rnn import RNN
+from .modules.rnn import NetRNN
